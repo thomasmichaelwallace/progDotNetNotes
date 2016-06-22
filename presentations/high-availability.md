@@ -2,6 +2,8 @@
 
 https://github.com/iancooper/Availability-Tutorial
 
+@icooper
+
 ## Defining Microserivces
 - Typically these days have monolithic central system (functionality), with _adapters_ to allow sections to be replaced.
 - However this a) doesn't scale; b) has to be compiled as a single unit.
@@ -80,6 +82,7 @@ _See code from repo._
 
 - Use Atom as a service registration (maybe not production grade; but very cacheable).
 - Note this uses the [brighter](http://iancooper.github.io/Paramore/Brighter.html) command dispatcher
+- Consider the _performance budget_ - how long can a call take. This can then be allocated across each service. Somestimes you might need to split this between *best* and *with retires*. This also governs the _number_ of Microservices hops.
 
 ### Timeouts
 - Stop using resources.
@@ -94,4 +97,41 @@ _See code from repo._
 - All about the context; problem can be transient.
     - Rare fault- retry without delay
     - Load fault - retry after delay
-    
+    - Permanent fault - do not retry!
+- This can be implemented as attributes (checkout Polly).
+
+### Circuit Breaker
+- On permanent failure- reject all requests.
+- Delay for a time, then send a test message. If it fails again, break and wait.
+- This prevents putting more load on a struggling server; especially as we can already predict the failure outcome.
+- Can be used to redirect to new resources (or request them).
+
+### Throttling
+- Asking for more than we can deliver.
+- Especially in transient cases (like garbge collection).
+- Apply limits (like unbounded result sets).
+
+### Decoupled Invocation
+- Use messaging!
+- Brokers introduce queing.
+- This means we don't lose requests.
+- Garuntees that something will happen, just not _now_.
+- This is a form of throttling.
+- 200 -> Resource to look at to indicate completion (actual, or monitoring). -> 301 -> Resource.
+- Very good for writes; less helpful for reads.
+- Queue wants to be _at least once_ delivery.
+- Needs capacity planning- but essentially defines its own solution.
+
+### Competing consumers
+- You can get to a position that the speed of processing the queue is now your bottleneck.
+- Makes ordering a challenging; try not to rely on this (idempotency).
+- Managing order across consumers.
+- Or you can have hot consumers on the side- keep them competing for a lock on the queue. This allows the primary to die and be replaced.
+
+### Parallel Pipelines
+- Sometimes you've just got a long running process (conversions, etc.)
+- All about constraints
+- Split long processing into parallel tasks; (A;B;C;D) vs (A & B & C & D)
+- Now limited by slowest "slice"
+- Also allows you to track by no. of things applied.
+- Self-identifies what needs improvement.
