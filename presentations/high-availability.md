@@ -74,4 +74,24 @@ https://github.com/iancooper/Availability-Tutorial
 - Hard coded configuration is also not flexible enough to survive a dynamic envionment; espeically in recovery scenarios.
 - Use service registration.
 
+## Demo Time
 
+_See code from repo._
+
+- Use Atom as a service registration (maybe not production grade; but very cacheable).
+- Note this uses the [brighter](http://iancooper.github.io/Paramore/Brighter.html) command dispatcher
+
+### Timeouts
+- Stop using resources.
+- Start serving from cache.
+- Send 429 (too many clients)- tell clients to slow down.
+- All about failing gracefully.
+- To do this either use API's timeout; or write a timeout handler (see brighter).
+- Setting these sensibly will make you much more responsive (although note .NET limits timeouts to whole seconds).
+
+### Retry
+- Many faults are transient.
+- All about the context; problem can be transient.
+    - Rare fault- retry without delay
+    - Load fault - retry after delay
+    
