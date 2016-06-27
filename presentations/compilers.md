@@ -1,7 +1,6 @@
 # Compilers
 
-- Start with a DSL.
-- 
+If in doubt, start with a DSL.
 
 ## When?
 - Syntax doesn't fit within another language
