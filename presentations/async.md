@@ -10,4 +10,5 @@ https://github.com/dylanbeattie/ProgNet2016
 - For .NET...
     - APM; Begin / End. IAsyncResult; create a job, do what you want to do, wait.
     - Background Worker; simple, light weight abstraction- aimined at UI.
-    - 
+
+... Not much new (checkout ES6 promises.)
