@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+
+        function doTeletype(submitButton) {
+            var form = submitButton.form;
+            var message = form["message"].value;
+            var duration = form["duration"].value;
+            var interval = (duration * 1000) / message.length;
+            teletype(message, interval);
+            return (false);
+        };
+
+        function teletype(message, interval, element) {
+            if (!element) {
+                element = document.createElement('p');
+                document.body.appendChild(element);
+            };
+            if (message.length > 0) {
+                element.innerHTML += message[0];
+                window.setTimeout(function () {
+                    teletype(message.substring(1), interval, element);
+                }, interval);
+            } else {
+                window.setTimeout(function () { alert("Done!"); }, interval);
+            }
+        }
+    </script>
+    <style>
+        html {
+            color: #0f0;
+            background-color: #000;
+            font-family: Consolas, courier, monospaced;
+        }
+
+        p#output {
+            font-size: 150%;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" id="teletype-form">
+        <label for="message-input">Message:</label><input type="text" name="message" id="message-input" value="Hello, World!" placeholder="message" />
+        <label for="duration-input">Duration:</label><input type="text" name="duration" id="duration-input" value="5" />
+        <input type="submit" value="Teletype!" onclick="return (doTeletype(this));" />
+    </form>
+    <hr />
+    <p id="output"></p>
+</body>
+</html>

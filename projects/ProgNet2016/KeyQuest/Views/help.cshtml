@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>KeyQuest : Characters</title>
+    <link type="text/css" rel="stylesheet" href="/Content/keyquest.css" />
+</head>
+<body>
+    <h1>KeyQuest : List of Characters</h1>
+    <table class="npc-list">
+        <tr>
+            <th>Name</th>
+            <th>Endpoint</th>
+            <th>Treasure</th>
+        </tr>
+        @foreach (var path in Model.Keys) {
+            <tr>
+                <td>@Model[path].Name</td>
+                <td>@path</td>
+                <td>@Model[path].Treasure.Name</td>
+            </tr>
+        }
+    </table>
+    </div>
+</body>
+</html>

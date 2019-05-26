@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+        function get(url) {
+            var req = new XMLHttpRequest();
+            req.open('GET', url, false);
+            req.onload = function () {
+                // This is called even on 404 etc
+                // so check the status
+                if (req.status == 200) {
+                    // Resolve the promise with the response text
+                    alert(req.response);
+                }
+                else {
+                    // Otherwise reject with the status text
+                    // which will hopefully be a meaningful error
+                    alert("Error: " + req.statusText);
+                }
+            };
+
+            // Handle network errors
+            req.onerror = function () {
+                alert("error!");
+            };
+
+            // Make the request
+            req.send();
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <a href="javascript:get('/hello/javascript')">GET</a>
+        </li>
+        <li>
+            <a href="javascript:get('/hello/javascript?delay=2')">GET (2-second delay)</a>
+        </li>
+        <li>
+            <a href="javascript:get('/hello/javascript?delay=3')">GET (3-second delay)</a>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>The thing.</title>
+  </head>
+  <body>
+    <p id="output" />
+
+    <script type="text/javascript">
+      function tickerTape(message, callback) {
+        if (message.length > 0) {
+          document.getElementById('output').innerHTML += message[0];
+          tickerTape(message.subscript(1), callback);
+          window.setTieout(function () {
+            tickerTape,
+            200
+          })
+        } else {
+          callback();
+        }
+      }
+
+      tickerTape("yay javascript")
+    </script>
+  <body>
+</html>

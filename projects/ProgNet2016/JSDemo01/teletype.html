@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+
+        function teletype(message) {
+            if (message.length > 0) {
+                document.getElementById("output").innerHTML += message[0];
+                window.setTimeout(function () {
+                    teletype(message.substring(1));
+                }, 100);
+            } else {
+                window.setTimeout(function () { alert("Done!"); }, 200);
+            }
+        }
+    </script>
+    <style>
+        html {
+            color: #0f0;
+            background-color: #000;
+            font-family: Consolas, courier, monospaced;
+            font-size: 200%;
+        }
+    </style>
+</head>
+<body>
+    <p id="output"></p>
+    <script>
+        teletype("Good morning ProgNET. Would you like to play a game?");
+    </script>
+</body>
+</html>

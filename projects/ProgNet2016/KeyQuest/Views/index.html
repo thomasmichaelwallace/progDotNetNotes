@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>DelayWeb: Async Programming Demo</title>
+    <meta charset="utf-8" />
+    <style>
+        html {
+            font-family: Arial;
+            font-size: 0.875em;
+        }
+
+        h1 {
+            font-size: 120%;
+        }
+
+        h2 {
+            font-size: 110%;
+        }
+
+        code {
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+        li {
+            margin-bottom: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            border: 0;
+            background-color: #ccc;
+            padding: 4px;
+            border-radius: 4px;
+            color: #000;
+        }
+
+            a:hover {
+                background-color: #eee;
+            }
+    </style>
+</head>
+<body>
+    <h1>DelayWeb</h1>
+    <h2>A helper for asynchronous programming workshops</h2>
+    <hr />
+    <p>Make an HTTP GET request to /hello/{name} - this app will return "Hello, {name}" as JSON or XML.</p>
+    <p>If you specify ?delay=X in the query string, your response will be delayed by X seconds</p>
+    <h3>Examples</h3>
+    <ul>
+        <li><a href="/hello"><code>GET /hello</code></a> - "Hello, World" with no delay.</li>
+        <li><a href="/hello/prognet"><code>GET /hello/prognet</code></a> - "Hello, prognet" with no delay.</li>
+        <li><a href="/hello/prognet?delay=5"><code>GET /hello/prognet?delay=5</code></a> - "Hello, prognet" with a five-second delay.</li>
+    </ul>
+    <hr />
+    <h3>Javascript Examples</h3>
+    <ul>
+        <li><a href="/Content/teletype.html">Timeouts</a></li>
+        <li><a href="/Content/norris.html">Chuck Norris</a></li>
+        <li><a href="/Content/KeyQuest.html">KeyQuest</a></li>
+    </ul>
+    <footer>
+        created by @dylanbeattie for the Progressive.NET Tutorials 2016
+    </footer>
+</body>
+</html>

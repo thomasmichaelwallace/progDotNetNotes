@@ -1,0 +1,1 @@
+sqlcmd -i Orders.sql

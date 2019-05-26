@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+        function changeJoke() {
+            var req = new XMLHttpRequest();
+            req.open('GET', "/chuck", false);
+            req.onload = function () {
+                // This is called even on 404 etc
+                // so check the status
+                if (req.status == 200) {
+                    // Resolve the promise with the response text
+                    var data = JSON.parse(req.response);
+                    document.getElementById("the-joke").innerHTML = data.value.joke;
+                } else {
+                    // Otherwise reject with the status text
+                    // which will hopefully be a meaningful error
+                    alert("Error: " + req.statusText);
+                }
+            };
+
+            // Handle network errors
+            req.onerror = function () {
+                alert("error!");
+            };
+
+            // Make the request
+            req.send();
+        }
+
+        var x = 0;
+        var speed = 1;
+        function animate() {
+            if (x < 0 || x > 800) speed = -1 * speed;
+
+            x += speed;
+            document.getElementById("the-joke").style.left = x + "px";
+        }
+
+        window.setInterval(animate, 10);
+    </script>
+    <style>
+        div#the-joke {
+            position: absolute;
+            top: 200px;
+            background-color: #66c;
+            color: #fff;
+            padding: 8px;
+            font-size: 200%;
+            border-radius: 8px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="javascript:changeJoke()">Change the joke!</a>
+    <div id="the-joke">(insert joke here)</div>
+
+</body>
+</html>

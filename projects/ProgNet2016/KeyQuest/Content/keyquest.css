@@ -1,0 +1,65 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Acme);
+
+html {
+    font-family: 'Acme', sans-serif;
+    font-size: 0.875em;
+}
+
+p.game-over {
+    color: red;
+    position: absolute;
+    border: 2px solid #fff;
+}
+
+div.quests div {
+    width: 33%;
+    box-sizing: border-box;
+    margin: 0px;
+    float: left;
+    height: 250px;
+    padding: 4px;
+}
+
+    div.quests div div {
+        border: 1px solid #900;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+        div.quests div div h3 {
+            text-align: center;
+        }
+
+div.game-over, div.victory {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    padding: 20px;
+    width: 600px;
+    margin-left: -300px;
+    border: 2px solid #000;
+    color: #fff;
+    text-align: center;
+}
+
+div.game-over {
+    background-color: #600;
+}
+
+div.victory {
+    background-color: #090;
+}
+
+table.npc-list {
+    border-collapse: collapse;
+}
+
+    table.npc-list tr th {
+        background-color: #ccc;
+        text-align: left;
+    }
+
+    table.npc-list tr td, table.npc-list tr th {
+        border: 1px solid #333;
+        padding: 8px;
+    }

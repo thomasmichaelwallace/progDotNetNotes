@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+
+        function runCallbacks() {
+            var interval = 100;
+            teletype("Hey, I just met you,", interval, function () {
+                teletype("And this is crazy,", interval, function () {
+                    teletype("But here's my number,", interval, function () {
+                        teletype("So call me, maybe!", interval, function () {
+                            alert('Done!');
+                        })
+                    })
+                })
+            });
+            return (false);
+        };
+
+        function teletype(message, interval, callback, element) {
+            if (!element) {
+                element = document.createElement('p');
+                document.body.appendChild(element);
+            };
+            if (message.length > 0) {
+                element.innerHTML += message[0];
+                window.setTimeout(function () {
+                    teletype(message.substring(1), interval, callback, element);
+                }, interval);
+            } else {
+                callback();
+            }
+        }
+    </script>
+    <style>
+        html {
+            color: #0f0;
+            background-color: #000;
+            font-family: Consolas, courier, monospaced;
+        }
+
+        p#output {
+            font-size: 150%;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" id="teletype-form">
+        <input type="submit" value="Teletype!" onclick="return (runCallbacks());" />
+    </form>
+    <hr />
+</body>
+</html>
